@@ -13,4 +13,20 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/App');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, IndexRoute, browserHistory} from "react-router";
+import Main from './components/main/Main';
+import Master from './components/Master';
+import Header from './components/header/Header';
+
+if (document.getElementById('app')) {
+    ReactDOM.render(
+        <Router history={browserHistory}>
+            <Route path="/" component={Master}>
+                <IndexRoute component={Main}></IndexRoute>
+                <Route path="h" component={Header}></Route>
+            </Route>
+        </Router>
+        , document.getElementById('app'));
+}

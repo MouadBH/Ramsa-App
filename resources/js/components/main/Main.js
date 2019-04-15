@@ -1,43 +1,55 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import MiniCard from '../minicard/MiniCard';
 
 class Main extends Component {
     render() {
         return (
             <div id="page-content">
-                        <div className="content-header">
+                    <div className="content-header content-header-media">
                             <div className="header-section">
-                                <h1>
-                                    <i className="gi gi-brush"></i>Page Title<br /><small>Subtitle</small>
-                                </h1>
-                            </div>
-                        </div>
-                        <ul className="breadcrumb breadcrumb-top">
-                            <li>Category</li>
-                            <li><a href="">Page</a></li>
-                        </ul>
+                                <div className="row">
+                                    <div className="col-md-4 col-lg-6 hidden-xs hidden-sm">
+                                        <h1>Welcome <strong>Admin</strong><br /><small>You Look Awesome!</small></h1>
+                                    </div>
 
-                        <div className="block">
-                            <div className="block-title">
-                                <div className="block-options pull-right">
-                                    <a href="javascript:void(0)" className="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i className="fa fa-cog"></i></a>
-                                    <div className="btn-group btn-group-sm">
-                                        <a href="javascript:void(0)" className="btn btn-alt btn-sm btn-default dropdown-toggle enable-tooltip" data-toggle="dropdown" title="Options"><span className="caret"></span></a>
-                                        <ul className="dropdown-menu dropdown-custom dropdown-menu-right">
-                                            <li>
-                                                <a href="javascript:void(0)"><i className="gi gi-cloud pull-right"></i>Simple Action</a>
-                                                <a href="javascript:void(0)"><i className="gi gi-airplane pull-right"></i>Another Action</a>
-                                            </li>
-                                            <li className="divider"></li>
-                                            <li>
-                                                <a href="javascript:void(0)"><i className="fa fa-wrench fa-fw pull-right"></i>Separated Action</a>
-                                            </li>
-                                        </ul>
+                                    <div className="col-md-8 col-lg-6">
+                                        <div className="row text-center">
+                                            <div className="col-xs-4 col-sm-3">
+                                                <h2 className="animation-hatch">
+                                                    $<strong>93.7k</strong><br />
+                                                    <small><i className="fa fa-thumbs-o-up"></i> Great</small>
+                                                </h2>
+                                            </div>
+                                            <div className="col-xs-4 col-sm-3">
+                                                <h2 className="animation-hatch">
+                                                    <strong>167k</strong><br />
+                                                    <small><i className="fa fa-heart-o"></i> Likes</small>
+                                                </h2>
+                                            </div>
+                                            <div className="col-xs-4 col-sm-3">
+                                                <h2 className="animation-hatch">
+                                                    <strong>101</strong><br />
+                                                    <small><i className="fa fa-calendar-o"></i> Events</small>
+                                                </h2>
+                                            </div>
+                                            <div className="col-sm-3 hidden-xs">
+                                                <h2 className="animation-hatch">
+                                                    <strong>27° C</strong><br />
+                                                    <small><i className="fa fa-map-marker"></i> Sydney</small>
+                                                </h2>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <h2>Block</h2>
                             </div>
+                            <img src="/assets/img/placeholders/headers/dashboard_header.jpg" alt="header image" className="animation-pulseSlow" />
+                        </div>
 
-                            <p>...</p>
+                        <div className="row">
+                            <MiniCard name="Client" to="" icon="fa-users" />
+                            <MiniCard name="Reclamation" to="" icon="fa-files-o" />
+                            <MiniCard name="Contrat" to="" icon="fa-file-text" />
+                            <MiniCard name="employe" to="" icon="fa-user-secret" />
                         </div>
                     </div>
         );
