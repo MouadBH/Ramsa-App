@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@coreui/coreui": "^2.1.9",
+        "jwt-decode": "^2.2.0",
         "react-router": "^3.2.1",
         "react-router-dom": "^5.0.0"
     }

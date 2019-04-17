@@ -4,7 +4,7 @@ import MiniCard from '../minicard/MiniCard';
 class Main extends Component {
     render() {
         return (
-            <div id="page-content">
+            <div>
                     <div className="content-header content-header-media">
                             <div className="header-section">
                                 <div className="row">

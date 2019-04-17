@@ -19,6 +19,12 @@ import {Router, Route, IndexRoute, browserHistory} from "react-router";
 import Main from './components/main/Main';
 import Master from './components/Master';
 import Header from './components/header/Header';
+import Login from './components/login/Login';
+
+if (!localStorage.getItem('usertoken')) {
+    browserHistory.push(`/login`);
+}
+
 
 if (document.getElementById('app')) {
     ReactDOM.render(
@@ -27,6 +33,7 @@ if (document.getElementById('app')) {
                 <IndexRoute component={Main}></IndexRoute>
                 <Route path="h" component={Header}></Route>
             </Route>
+            <Route path="login" component={Login} />
         </Router>
         , document.getElementById('app'));
 }
