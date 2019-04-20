@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import bg from './login_full_bg.jpg';
 import { login } from "../actions/Actions";
 import { browserHistory } from 'react-router';
+
+
 class Login extends Component {
     constructor(){
         super();

@@ -9,7 +9,7 @@ class Main extends Component {
                             <div className="header-section">
                                 <div className="row">
                                     <div className="col-md-4 col-lg-6 hidden-xs hidden-sm">
-                                        <h1>Welcome <strong>Admin</strong><br /><small>You Look Awesome!</small></h1>
+                                        <h1>Welcome <strong>{localStorage.user_nom}</strong><br /><small>You Look Awesome!</small></h1>
                                     </div>
 
                                     <div className="col-md-8 col-lg-6">

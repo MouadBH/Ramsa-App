@@ -59,8 +59,11 @@ class UserController extends Controller
         } catch (JWTException $ex) {
             return response()->json(['error' => 'token error'], 500);
         }
-
-        return response()->json(compact('token'));
+        $user = User::where('cin', '=', $credentials['cin'])->firstOrFail();
+        $user_id = $user->id;
+        $user_nom = $user->nom;
+        $user_prenom = $user->prenom;
+        return response()->json(compact('token', 'user_id', 'user_nom', 'user_prenom'));
     }
 
     public function getAuthenticatedUser()

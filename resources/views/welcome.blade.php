@@ -23,6 +23,7 @@
         
         <!-- Related styles of various icon packs and plugins -->
         <link rel="stylesheet" href="{{asset('assets/css/plugins.css')}}">
+        
 
         <!-- The main stylesheet of this template. All Bootstrap overwrites are defined in here -->
         <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
@@ -49,5 +50,9 @@
         <script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
         <script src="{{asset('assets/js/plugins.js')}}"></script>
         <script src="{{asset('assets/js/app.js')}}"></script>
+        <script src="{{asset('assets/js/pages/tablesDatatables.js')}}"></script>
+
+        <script>$(function(){ TablesDatatables.init(); });</script>
+
     </body>
 </html>

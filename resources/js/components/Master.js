@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
 import { Link, IndexLink, browserHistory } from 'react-router';
+import $ from 'jquery';
 
 export default class Master extends Component {
+    constructor(){
+        super();
+        this.toggleSidebar = this.toggleSidebar.bind(this)
+    }
     logOut(e){
         e.preventDefault();
 
         console.log('11')
         localStorage.removeItem('usertoken');
+        localStorage.removeItem('user');
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('user_nom');
+        localStorage.removeItem('user_prenom');
         browserHistory.push(`/login`);
+    }
+    componentDidMount(){
+        this.toggleSidebar();
+    }
+    toggleSidebar(){
+       
+        // $("#page-wrapper").click(function(){
+        //     alert("The paragraph was clicked.");
+        //   });
     }
     render() {
         return (
@@ -36,7 +54,7 @@ export default class Master extends Component {
                                             <img src="https://elmashhad.com/themes/msh/assets/images/avatar.png" alt="avatar" />
                                         </a>
                                     </div>
-                                    <div className="sidebar-user-name">John Doe</div>
+                                    <div className="sidebar-user-name">{localStorage.user_nom}</div>
                                 </div>
 
 
@@ -55,10 +73,10 @@ export default class Master extends Component {
                                         </a>
                                         <ul>
                                             <li>
-                                                <Link to="login">All</Link>
+                                                <Link to="/client">All</Link>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)">Ajouter</a>
+                                                <Link to="/client/create">Ajouter</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -129,6 +147,13 @@ export default class Master extends Component {
 
                     <div id="main-container">
                         <header className="navbar navbar-default">
+                        <ul className="nav navbar-nav-custom">
+                            <li>
+                                <a href="javascript:void(0)" onClick={this.toggleSidebar()}>
+                                    <i className="fa fa-bars fa-fw"></i>
+                                </a>
+                            </li>
+                        </ul>
                             <form action="index.html" method="post" className="navbar-form-custom">
                                 <div className="form-group">
                                     <input type="text" id="top-search" name="top-search" className="form-control" placeholder="Search.." />

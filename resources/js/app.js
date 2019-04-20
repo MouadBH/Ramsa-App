@@ -16,11 +16,15 @@ require('./bootstrap');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory} from "react-router";
-import Main from './components/main/Main';
 import Master from './components/Master';
-import Header from './components/header/Header';
+    import Main from './components/main/Main';
+    import Header from './components/header/Header';
 import Login from './components/login/Login';
-
+import Client from './components/client/Client';
+    import CreateClient from './components/client/Create';
+    import EditClient from './components/client/Edit';
+    import ShowClient from './components/client/show';
+    
 if (!localStorage.getItem('usertoken')) {
     browserHistory.push(`/login`);
 }
@@ -29,9 +33,13 @@ if (!localStorage.getItem('usertoken')) {
 if (document.getElementById('app')) {
     ReactDOM.render(
         <Router history={browserHistory}>
-            <Route path="/" component={Master}>
-                <IndexRoute component={Main}></IndexRoute>
+            <Route exact path="/" component={Master}>
+                <IndexRoute exact component={Main}></IndexRoute>
                 <Route path="h" component={Header}></Route>
+                <Route exact path="client" component={Client}></Route>
+                <Route exact path="/client/detail/:id" component={ShowClient}></Route>
+                <Route exact path="/client/create" component={CreateClient}></Route>
+                <Route exact path="client/edit/:id" component={EditClient}></Route>
             </Route>
             <Route path="login" component={Login} />
         </Router>
