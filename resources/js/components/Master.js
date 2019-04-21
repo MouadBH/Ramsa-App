@@ -103,10 +103,10 @@ export default class Master extends Component {
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="javascript:void(0)">All</a>
+                                                <Link to="/contrat">All</Link>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)">Ajouter</a>
+                                                <Link to="/contrat/create">Ajouter</Link>
                                             </li>
                                         </ul>
                                     </li>

@@ -16,11 +16,15 @@ use Illuminate\Http\Request;
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@login');
 Route::get('profile', 'UserController@getAuthenticatedUser');
+
 Route::get('clients', 'ClientController@index');
 Route::post('client', 'ClientController@store');
 Route::get('client/{id}', 'ClientController@show');
 Route::put('client/update/{id}', 'ClientController@update');
 Route::delete('client/delete/{id}', 'ClientController@delete');
+
+Route::get('contrats', 'ContratController@index');
+Route::get('contrat/{id}', 'ContratController@show');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { defaultCoreCipherList } from 'constants';
 
 export const login = user => {
     return axios
@@ -87,6 +88,28 @@ export const deleteClient = id => {
         .delete('/api/client/delete/'+id)
         .then(res => {
             return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const contrats = () => {
+    return axios
+        .get('/api/contrats')
+        .then(res => {
+            return res.data.contrats;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const getContratById = id => {
+    return axios
+        .get('/api/contrat/'+id)
+        .then(res => {
+            return res.data.contrat;
         })
         .catch(err => {
             console.log(err);

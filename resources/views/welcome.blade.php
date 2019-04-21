@@ -50,9 +50,5 @@
         <script src="{{asset('assets/js/vendor/bootstrap.min.js')}}"></script>
         <script src="{{asset('assets/js/plugins.js')}}"></script>
         <script src="{{asset('assets/js/app.js')}}"></script>
-        <script src="{{asset('assets/js/pages/tablesDatatables.js')}}"></script>
-
-        <script>$(function(){ TablesDatatables.init(); });</script>
-
     </body>
 </html>

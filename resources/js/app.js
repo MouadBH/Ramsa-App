@@ -18,12 +18,14 @@ import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory} from "react-router";
 import Master from './components/Master';
     import Main from './components/main/Main';
-    import Header from './components/header/Header';
+    import Map from './components/map/Map';
 import Login from './components/login/Login';
 import Client from './components/client/Client';
     import CreateClient from './components/client/Create';
     import EditClient from './components/client/Edit';
     import ShowClient from './components/client/show';
+import Contrat from './components/contrat/Contrat';
+import ShowContrat from './components/contrat/Show';
     
 if (!localStorage.getItem('usertoken')) {
     browserHistory.push(`/login`);
@@ -35,11 +37,13 @@ if (document.getElementById('app')) {
         <Router history={browserHistory}>
             <Route exact path="/" component={Master}>
                 <IndexRoute exact component={Main}></IndexRoute>
-                <Route path="h" component={Header}></Route>
+                <Route exact path="h" component={Map}></Route>
                 <Route exact path="client" component={Client}></Route>
                 <Route exact path="/client/detail/:id" component={ShowClient}></Route>
                 <Route exact path="/client/create" component={CreateClient}></Route>
                 <Route exact path="client/edit/:id" component={EditClient}></Route>
+                <Route exact path="contrat" component={Contrat}></Route>
+                <Route exact path="/contrat/detail/:id" component={ShowContrat}></Route>                
             </Route>
             <Route path="login" component={Login} />
         </Router>
