@@ -47,4 +47,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
 }

@@ -115,3 +115,104 @@ export const getContratById = id => {
             console.log(err);
         });
 }
+
+export const getContratInfo = id => {
+    let linksArr = [
+            '/api/contrat/'+id+'/client',
+            '/api/contrat/'+id+'/loc',
+            '/api/contrat/'+id+'/secteur',
+            '/api/contrat/'+id+'/tourne'
+        ];
+    return axios
+        .all(linksArr.map(l => axios.get(l)))
+        .then(axios.spread(
+            (...res) => {
+                return res;
+                console.log(res);
+            }
+        ))
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const getLocal = () => {
+    let linksArr = [
+            '/api/locs',
+            '/api/secteurs',
+            '/api/tournes'
+        ];
+    return axios
+        .all(linksArr.map(l => axios.get(l)))
+        .then(axios.spread(
+            (...res) => {
+                return res;
+                console.log(res);
+            }
+        ))
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const creatContrat = contrat => {
+    return axios
+        .post('/api/contrat', {
+            id_client: contrat.id_client,
+            date_debut: contrat.date_debut,
+            date_fin: contrat.date_fin,
+            adress_loc: contrat.adress_loc,
+            id_loc: contrat.id_loc,
+            id_secteur: contrat.id_secteur,
+            id_tournee: contrat.id_tournee,
+            order: contrat.order,
+            compteur: contrat.compteur,
+            lat: contrat.lat,
+            long: contrat.long
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
+export const updateContrat = contrat => {
+    console.log(contrat)
+    return axios
+        .put('/api/contrat/update/'+contrat.idContrat, {
+            id_client: contrat.id_client,
+            date_debut: contrat.date_debut,
+            date_fin: contrat.date_fin,
+            adress_loc: contrat.adress_loc,
+            id_loc: contrat.id_loc,
+            id_secteur: contrat.id_secteur,
+            id_tournee: contrat.id_tournee,
+            order: contrat.order,
+            compteur: contrat.compteur,
+            lat: contrat.lat,
+            long: contrat.long
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
+export const deleteContrat = id => {
+    return axios
+        .delete('/api/contrat/delete/'+id)
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}

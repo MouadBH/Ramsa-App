@@ -12,4 +12,12 @@ class Client extends Model
      * @var string
      */
     protected $table = 'clients';
+
+    /**
+     * Get the User record associated with the contrat.
+     */
+    public function contrats()
+    {
+        return $this->hasMany('App\Contrat', 'id_client', 'id');
+    }
 }

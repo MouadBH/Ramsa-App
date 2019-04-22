@@ -23,7 +23,7 @@ class Contrat extends Component {
         const { contrats } = this.state;
         return contrats && contrats.length ? contrats.map((c, index) => (
             <tr key={index}>
-                <td className="text-center"><Link to={"/client/contrat/"+c.id}>{c.id}</Link></td>
+                <td className="text-center"><Link to={"/contrat/"+c.id}>{c.id}</Link></td>
                 <td className="text-center">{c.date_debut}</td>    
                 <td className="text-center">{c.date_fin}</td>
                 <td className="text-center">{c.id_client}</td>

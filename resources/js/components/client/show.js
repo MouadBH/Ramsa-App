@@ -41,8 +41,6 @@ class Show extends Component {
     }
 
     deleteClient() {
-        //e.preventDefault();
-        
         deleteClient(this.state.idClient).then((res) => {
             console.log(res)
             browserHistory.push(`/client`);

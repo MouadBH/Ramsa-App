@@ -3,47 +3,55 @@ import { Link, IndexLink, browserHistory } from 'react-router';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
 import { getContratById } from '../actions/Actions';
-import { deleteClient } from '../actions/Actions';
-import Map from '../map/Map';
+import { getContratInfo } from '../actions/Actions';
+import { deleteContrat } from '../actions/Actions';
+import { Map } from '../map/Map';
 
 class Show extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isDelete: false,
+            showMarker: false,
             idContrat: this.props.params.id,
             date_debut: '',
             date_fin: '',
-            id_client: '',
+            client: {},
             adress_loc: '',
-            id_loc: '',
-            id_secteur: '',
-            id_tournee: '',
+            loc: {},
+            secteur: {},
+            tourne: {},
             order: '',
             lat: 30.399267,
-            long: -8.5217,
+            long: -9.5217,
             compteur: '',
             errors: {}
         };
 
-        this.deleteClient = this.deleteClient.bind(this);
+        this.deleteContrat = this.deleteContrat.bind(this);
     }
 
     componentDidMount() {
         getContratById(this.state.idContrat).then((c) => {
             this.setState({
-                idContrat: this.props.params.id,
+                idContrat: c.id,
                 date_debut: c.date_debut,
                 date_fin: c.date_fin,
-                id_client: c.id ,
                 adress_loc: c.adress_loc,
-                id_loc: c.id_loc,
-                id_secteur: c.id_secteur,
-                id_tournee: c.id_tournee,
                 order: c.order,
                 lat: c.lat,
                 long: c.long,
-                compteur: c.compteur
+                compteur: c.compteur,
+                showMarker: true
+            });
+        }
+        );
+        getContratInfo(this.state.idContrat).then((c) => {
+            this.setState({
+                client: c[0].data,
+                loc: c[1].data,
+                secteur: c[2].data,
+                tourne: c[3].data
             });
         }
         );
@@ -51,14 +59,11 @@ class Show extends Component {
 
     }
 
-    deleteClient() {
-        //e.preventDefault();
-
-        deleteClient(this.state.idContrat).then((res) => {
+    deleteContrat() {
+        console.log(this.state)
+        deleteContrat(this.state.idContrat).then((res) => {
             console.log(res)
-            browserHistory.push(`/client`);
-
-            console.log(this.state)
+            browserHistory.push(`/contrat`);
         })
     }
 
@@ -94,9 +99,9 @@ class Show extends Component {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>1</strong></a></td>
-                                        <td className="hidden-xs" style={{ width: '15%' }}><a href="javascript:void(0)">5 Products</a></td>
-                                        <td className="text-right hidden-xs" style={{ width: '10%' }}><strong>$585,00</strong></td>
+                                        <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>{this.state.loc.libelle}</strong></a></td>
+                                        <td className="text-center" style={{ width: '15%' }}><a href="javascript:void(0)">{this.state.secteur.libelle}</a></td>
+                                        <td className="text-center" style={{ width: '10%' }}><strong>{this.state.tourne.libelle}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -125,11 +130,37 @@ class Show extends Component {
                                         <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>{this.state.idContrat}</strong></a></td>
                                         <td className="text-center" style={{ width: '15%' }}>{this.state.date_debut}</td>
                                         <td className="text-right" style={{ width: '10%' }}>{this.state.date_fin}</td>
-                                        <td className="text-center" style={{ width: '100px' }}><Link to={"/client/detail/"+this.state.id_client}><strong>{this.state.id_client}</strong></Link></td>
+                                        <td className="text-center" style={{ width: '100px' }}><Link to={"/client/detail/" + this.state.client.id}><strong>{this.state.client.nom} {this.state.client.prenom}</strong></Link></td>
                                         <td className="text-center">{this.state.adress_loc}</td>
                                         <td className="text-center"><span className="label label-warning">{this.state.compteur}</span></td>
                                         <td className="text-center"><span className="label label-primary">{this.state.order}</span></td>
-                                        <td className="text-center">{this.state.idContrat}</td>
+                                        <td className="text-center">
+                                            <div className="btn-group btn-group-sm">
+                                                <Link to={"/contrat/edit/" + this.state.idContrat} title="Modifier" className="btn btn-default">
+                                                    <i className="fa fa-pencil"></i> 
+                                                </Link>
+                                                <button onClick={() => this.setState({ isDelete: true })} title="Detail" className="btn btn-danger">
+                                                    <i className="fa fa-trash"></i> 
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <SweetAlert
+                                                show={this.state.isDelete}
+                                                title="Delete"
+                                                text="Are you sure to delete this contrat?"
+                                                type="error"
+                                                showCancelButton
+                                                confirmButtonText="Delete"
+                                                confirmButtonColor="#f27474"
+                                                showLoaderOnConfirm={true}
+                                                onConfirm={() => {
+                                                    this.deleteContrat();
+                                                    this.setState({ isDelete: false });
+                                                }}
+                                                onCancel={() => this.setState({ isDelete: false })}
+                                                onOutsideClick={() => this.setState({ isDelete: false })}
+
+                                            />
                                     </tr>
                                 </tbody>
                             </table>
@@ -142,13 +173,14 @@ class Show extends Component {
                                     <h2><i className="fa fa-file-o"></i> <strong>Position de Contrat</strong></h2>
                                 </div>
                                 <Map
-                                    isMarkerShown
+                                    isMarkerShown={this.state.showMarker}
                                     googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDebAMQ2oe6eiBRR5YWBJqKY5KyQxsSbKc&v=3.exp&libraries=geometry,drawing,places"
                                     loadingElement={<div style={{ height: `100%` }} />}
-                                    containerElement={<div style={{ height: `400px` }} id="gmap-markers"/>}
+                                    containerElement={<div style={{ height: `400px` }} id="gmap-markers" />}
                                     mapElement={<div style={{ height: `100%` }} />}
                                     lat={this.state.lat}
                                     lng={this.state.long}
+                                    zoom={15}
                                 />
                             </div>
                         </div>

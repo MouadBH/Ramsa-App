@@ -12,4 +12,23 @@ class Contrat extends Model
      * @var string
      */
     protected $table = 'contrats';
+    /**
+     * Get the client record associated with the contrat.
+     */
+    public function client()
+    {
+        return $this->belongsTo('App\Client', 'id_client', 'id');
+    }
+    public function loc()
+    {
+        return $this->belongsTo('App\Loc', 'id_loc', 'id');
+    }
+    public function secteur()
+    {
+        return $this->belongsTo('App\Secteur', 'id_secteur', 'id');
+    }
+    public function tourne()
+    {
+        return $this->belongsTo('App\Tourne', 'id_tournee', 'id');
+    }
 }

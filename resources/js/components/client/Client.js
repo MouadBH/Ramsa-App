@@ -13,7 +13,6 @@ class Client extends Component {
         }
     }
     componentDidMount() {
-        $(function () { TablesDatatables.init(); });
         clients().then((client) => this.setState({
             clients: client
         })

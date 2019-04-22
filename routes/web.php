@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/ho', function () {
+    return response()->json(App\Contrat::find(1)->loc);
+});
+ 
 Route::get('/{path}', function (){
     return view('welcome');
 })->where('path', '.*');

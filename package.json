@@ -30,9 +30,12 @@
         "datatables.net": "^1.10.12",
         "datatables.net-dt": "^1.10.19",
         "jwt-decode": "^2.2.0",
+        "react-datepicker": "^2.4.0",
         "react-google-maps": "^9.4.5",
         "react-router": "^3.2.1",
         "react-router-dom": "^5.0.0",
+        "react-select": "^2.4.3",
+        "recompose": "^0.30.0",
         "sweetalert-react": "^0.4.11"
     }
 }
