@@ -47,7 +47,8 @@ class LocController extends Controller
      */
     public function show($id)
     {
-        //
+        $loc = Loc::findOrFail($id);
+        return response()->json(['loc' => $loc], 200);
     }
 
     /**

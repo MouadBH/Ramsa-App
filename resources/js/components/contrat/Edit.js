@@ -28,8 +28,8 @@ class Create extends Component {
             tourne: '',
             order: '',
             compteur: '',
-            lat: '',
-            lng: '',
+            lat: 30.399267,
+            lng: -9.5517,
             clients: [{ value: "search for a client", label: "search for a client" }],
             locs: [],
             secteurs: [],
@@ -319,7 +319,7 @@ class Create extends Component {
                                 lat={this.state.lat}
                                 lng={this.state.lng}
                                 handleMapClick={this.handleMapClick}
-                                zoom={15}
+                                zoom={18}
                             />
                         </div>
                         <div className="form-group form-actions">

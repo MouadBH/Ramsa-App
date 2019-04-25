@@ -10,4 +10,8 @@ class Loc extends Model
     {
         return $this->hasMany('App\Contrat');
     }
+    public function equipes()
+    {
+        return $this->hasMany('App\Equipe');
+    }
 }

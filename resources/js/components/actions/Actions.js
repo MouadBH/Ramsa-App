@@ -216,3 +216,129 @@ export const deleteContrat = id => {
             console.log(err);
         });
 }
+
+export const equipes = () => {
+    return axios
+        .get('/api/equipes')
+        .then(res => {
+            return res.data.equipes;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const creatEquipe = equipe => {
+    return axios
+        .post('/api/equipe', {
+            libelle: equipe.libelle,
+            id_loc: equipe.id_loc
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
+export const getEquipeById = id => {
+    return axios
+        .get('/api/equipe/'+id)
+        .then(res => {
+            return res.data.equipe;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const updateEquipe = equipe => {
+    return axios
+        .put('/api/equipe/update/'+equipe.idEquipe , {
+            libelle: equipe.libelle,
+            id_loc: equipe.id_loc
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
+export const deleteEquipe = id => {
+    return axios
+        .delete('/api/equipe/delete/'+id)
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const reclamations = () => {
+    return axios
+        .get('/api/reclamations')
+        .then(res => {
+            return res.data.reclamations;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const getReclamationById = id => {
+    return axios
+        .get('/api/reclamation/'+id)
+        .then(res => {
+            return res.data.reclamation;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const deleteReclamation = id => {
+    return axios
+        .delete('/api/reclamation/delete/'+id)
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const affecteEquipe = reclamation => {
+    return axios
+        .put('/api/reclamation/affectequipe/'+reclamation.idReclamation , {
+            id_equipe: reclamation.id_equipe,
+            affecte: reclamation.affecte
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
+/////////////
+export const getLocById = id => {
+    return axios
+        .get('/api/loc/'+id)
+        .then(res => {
+            return res.data.loc;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}

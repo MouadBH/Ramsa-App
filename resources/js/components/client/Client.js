@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link, IndexLink, browserHistory } from 'react-router';
-import SweetAlert from 'sweetalert-react';
-import 'sweetalert/dist/sweetalert.css';
 import { clients } from '../actions/Actions';
 
 

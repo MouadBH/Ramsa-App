@@ -31,4 +31,8 @@ class Contrat extends Model
     {
         return $this->belongsTo('App\Tourne', 'id_tournee', 'id');
     }
+    public function reclamations()
+    {
+        return $this->hasMany('App\Reclamation');
+    }
 }

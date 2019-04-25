@@ -41,7 +41,7 @@ export default class Master extends Component {
 
                 <div id="page-container" className="sidebar-partial sidebar-visible-lg sidebar-no-animations">
 
-                    <div id="sidebar">
+                    <div id="sidebar" style={{position: "fixed"}}>
                         <div id="sidebar-scroll">
                             <div className="sidebar-content">
                                 <Link to="h" className="sidebar-brand">
@@ -88,10 +88,7 @@ export default class Master extends Component {
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="javascript:void(0)">All</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">Ajouter</a>
+                                                <Link to="/reclamation">All</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -114,14 +111,14 @@ export default class Master extends Component {
                                         <a href="#" className="sidebar-nav-menu">
                                             <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
                                             <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Employeé</span>
+                                            <span className="sidebar-nav-mini-hide">Equipe</span>
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="javascript:void(0)">All</a>
+                                                <Link to="/equipe">All</Link>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)">Ajouter</a>
+                                                <Link to="/equipe/create">Ajouter</Link>
                                             </li>
                                         </ul>
                                     </li>
