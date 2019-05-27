@@ -81,6 +81,12 @@ class ClientController extends Controller
         return response()->json(['client' => $client], 201);
     }
 
+    public function login(Request $request)
+    {
+        
+    }
+    
+
     public function delete($id)
     {
         $client = Client::findOrFail($id);
