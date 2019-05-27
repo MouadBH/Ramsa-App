@@ -33,7 +33,10 @@ import Equipe from './components/equipe/Equipe';
     import ShowEquipe from './components/equipe/Show';
 import Reclamation from './components/reclamation/Reclamation';
     import ShowReclamation from './components/reclamation/Show';
-    
+import Employe from './components/employe/Employe';
+    import EditEmploye from './components/employe/Edit';
+    import CreateEmploye from './components/employe/Create';
+
 if (!localStorage.getItem('usertoken')) {
     browserHistory.push(`/login`);
 }
@@ -50,14 +53,17 @@ if (document.getElementById('app')) {
                     <Route exact path="client/edit/:id" component={EditClient}></Route>
                 <Route exact path="contrat" component={Contrat}></Route>
                     <Route exact path="/contrat/create" component={CreateContrat}></Route>
-                    <Route exact path="/contrat/detail/:id" component={ShowContrat}></Route>                
-                    <Route exact path="/contrat/edit/:id" component={EditContrat}></Route>                
+                    <Route exact path="/contrat/detail/:id" component={ShowContrat}></Route>
+                    <Route exact path="/contrat/edit/:id" component={EditContrat}></Route>
                 <Route exact path="equipe" component={Equipe}></Route>
                     <Route exact path="/equipe/create" component={CreateEquipe}></Route>
                     <Route exact path="/equipe/edit/:id" component={EditEquipe}></Route>
                     <Route exact path="/equipe/detail/:id" component={ShowEquipe}></Route>
                 <Route exact path="reclamation" component={Reclamation}></Route>
                     <Route exact path="/reclamation/detail/:id" component={ShowReclamation}></Route>
+                <Route exact path="employe" component={Employe}></Route>
+                    <Route exact path="/employe/edit/:id" component={EditEmploye}></Route>
+                    <Route exact path="/employe/create" component={CreateEmploye}></Route>
             </Route>
             <Route path="login" component={Login} />
         </Router>

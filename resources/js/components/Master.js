@@ -22,7 +22,7 @@ export default class Master extends Component {
         this.toggleSidebar();
     }
     toggleSidebar(){
-       
+
         // $("#page-wrapper").click(function(){
         //     alert("The paragraph was clicked.");
         //   });
@@ -126,14 +126,14 @@ export default class Master extends Component {
                                         <a href="#" className="sidebar-nav-menu">
                                             <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
                                             <i className="gi gi-cogwheel sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Dropdown</span>
+                                            <span className="sidebar-nav-mini-hide">Employes</span>
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="javascript:void(0)">Link #1</a>
+                                                <Link to="/employe">All</Link>
                                             </li>
                                             <li>
-                                                <a href="javascript:void(0)">Link #2</a>
+                                                <Link to="/employe/create">Ajouter</Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -213,4 +213,3 @@ export default class Master extends Component {
         );
     }
 }
-

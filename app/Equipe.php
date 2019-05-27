@@ -14,4 +14,8 @@ class Equipe extends Model
     {
         return $this->hasMany('App\Reclamation');
     }
+    public function employes()
+    {
+        return $this->hasMany('App\Employe', 'id_equipe');
+    }
 }

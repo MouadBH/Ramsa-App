@@ -121,4 +121,9 @@ class EquipeController extends Controller
     {
         return response()->json(Equipe::findOrFail($id)->loc);
     }
+
+    public function getEquipeEmplyes($id)
+    {
+      return response()->json(Equipe::findOrFail($id)->employes);
+    }
 }

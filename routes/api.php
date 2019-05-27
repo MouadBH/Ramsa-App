@@ -37,6 +37,7 @@ Route::get('equipes', 'EquipeController@index');
 Route::post('equipe', 'EquipeController@store');
 Route::get('equipe/{id}', 'EquipeController@show');
     Route::get('equipe/{id}/loc', 'EquipeController@getEquipeLoc');
+    Route::get('equipe/{id}/employes', 'EquipeController@getEquipeEmplyes');
 Route::put('equipe/update/{id}', 'EquipeController@update');
 Route::delete('equipe/delete/{id}', 'EquipeController@destroy');
 
@@ -54,6 +55,12 @@ Route::get('secteurs', 'SecteurController@index');
 
 Route::get('tournes', 'TourneController@index');
 
+Route::get('employes', 'EmployeController@index');
+Route::post('employe', 'EmployeController@store');
+Route::get('employe/{id}', 'EmployeController@show');
+    Route::get('employe/{id}/equipe', 'EmployeController@getEquipe');
+Route::put('employe/update/{id}', 'EmployeController@AffectToEquipe');
+Route::delete('employe/delete/{id}', 'EmployeController@destroy');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

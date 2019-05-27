@@ -331,6 +331,68 @@ export const affecteEquipe = reclamation => {
         });
 }
 
+export const employes = () => {
+    return axios
+        .get('/api/employes')
+        .then(res => {
+            return res.data.employes;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const createEmploye = employe => {
+    return axios
+        .post('/api/employe', {
+            nom: employe.nom,
+            prenom: employe.prenom,
+            id_equipe: employe.id_equipe,
+            email: employe.email
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
+export const getEmployeById = id => {
+    return axios
+        .get('/api/employe/'+id)
+        .then(res => {
+            return res.data.employe;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const deleteEmploye = id => {
+    return axios
+        .delete('/api/employe/delete/'+id)
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const getEquipeEmplyes = id => {
+    return axios
+        .get('/equipe/'+id+'/employes')
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
 /////////////
 export const getLocById = id => {
     return axios
