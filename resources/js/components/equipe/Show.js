@@ -5,6 +5,7 @@ import 'sweetalert/dist/sweetalert.css';
 import { getEquipeById } from '../actions/Actions';
 import { getLocById } from '../actions/Actions';
 import { deleteEquipe } from '../actions/Actions';
+import { getEquipeEmployes } from '../actions/Actions';
 
 class Show extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class Show extends Component {
             id_loc: '',
             loc: '',
             locs: [],
+            employes: [],
             errors: null
         };
     }
@@ -42,15 +44,38 @@ class Show extends Component {
             }
         }
         );
-        
+
+        getEquipeEmployes(this.state.idEquipe).then((res) => {
+          console.log(res);
+          this.setState({ employes: res.data });
+        });
+
     }
- 
+
     deleteEquipe(){
         deleteEquipe(this.state.idEquipe).then((res) => {
             console.log(res)
             browserHistory.push(`/equipe`);
-            
+
         })
+    }
+    renderEmployeTable(){
+      const { employes } = this.state;
+      return employes && employes.length ? employes.map((employe, index) => (
+          <tr key={index}>
+              <td className="text-center">{employe.id}</td>
+              <td className="text-center">{employe.nom}</td>
+              <td className="text-center">{employe.prenom}</td>
+              <td className="text-center">{employe.email}</td>
+              <td className="text-center">
+                  <div className="btn-group btn-group-sm">
+                      <Link to={"/employe/edit/"+employe.id} title="Modifier" className="btn btn-default">
+                          <i className="fa fa-pencil"></i> Modifier
+                      </Link>
+                  </div>
+              </td>
+          </tr>
+      )) : null;
     }
     render() {
         return (
@@ -125,7 +150,7 @@ class Show extends Component {
                             <div className="block-title">
                                 <h2><i className="fa fa-file-o"></i> <strong>Les employée</strong></h2>
                             </div>
-                            <table className="table table-bordered table-striped table-vcenter">
+                            <table className="table table-responsive table-bordered table-striped table-vcenter">
                                 <thead>
                                     <tr>
                                         <th className="text-center">ID</th>
@@ -136,13 +161,7 @@ class Show extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th className="text-center">ID</th>
-                                        <th className="text-center">Libelle</th>
-                                        <th className="text-center">Loc</th>
-                                        <th className="text-center">Loc</th>
-                                        <th className="text-center">Actions</th>
-                                    </tr>
+                                    {this.renderEmployeTable()}
                                 </tbody>
                             </table>
                         </div>

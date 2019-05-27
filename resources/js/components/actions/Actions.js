@@ -382,9 +382,9 @@ export const deleteEmploye = id => {
         });
 }
 
-export const getEquipeEmplyes = id => {
+export const getEquipeEmployes = id => {
     return axios
-        .get('/equipe/'+id+'/employes')
+        .get('/api/equipe/'+id+'/employes')
         .then(res => {
             return res;
         })
