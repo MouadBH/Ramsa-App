@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MiniCard from '../minicard/MiniCard';
+import bg from './bg.jpg';
 
 class Main extends Component {
     render() {
@@ -42,7 +43,7 @@ class Main extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <img src="/assets/img/placeholders/headers/dashboard_header.jpg" alt="header image" className="animation-pulseSlow" />
+                            <img src={bg} alt="header image" className="animation-pulseSlow" />
                         </div>
 
                         <div className="row">
