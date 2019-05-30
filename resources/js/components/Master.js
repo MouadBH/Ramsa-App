@@ -16,6 +16,7 @@ export default class Master extends Component {
         localStorage.removeItem('user_id');
         localStorage.removeItem('user_nom');
         localStorage.removeItem('user_prenom');
+        localStorage.removeItem('user_type');
         browserHistory.push(`/login`);
     }
     componentDidMount(){

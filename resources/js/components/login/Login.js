@@ -3,7 +3,7 @@ import bg from './login_full_bg.jpg';
 import { login } from "../actions/Actions";
 import { browserHistory } from 'react-router';
 
- 
+
 class Login extends Component {
     constructor(){
         super();
@@ -15,7 +15,8 @@ class Login extends Component {
         this.state = {
             cin: '',
             password: '',
-            errors: {}
+            isErr: false,
+            errors: []
         };
 
         this.onChange = this.onChange.bind(this);
@@ -29,17 +30,43 @@ class Login extends Component {
     onSubmit(e){
         e.preventDefault();
 
+        if (this.state.cin === '') {
+          this.state.errors.push({name: "Enter votre email."});
+          this.setState({isErr: true})
+        }else if (this.state.password === '') {
+          this.state.errors.push({name: "Enter votre mote de passe."});
+          this.setState({isErr: true})
+
+        }
+
         const user = {
             cin: this.state.cin,
             password: this.state.password
         }
 
         login(user).then((res) => {
+          console.log(res);
+          if (res.data.error) {
+            this.state.errors.push({name: res.data.error});
+            this.setState({isErr: true})
+            
+          }else {
             browserHistory.push(`/`);
+          }
         })
     }
-
+    renderError(){
+        console.log(this.state.errors)
+        if(this.state.errors.length){
+            const Err = this.state.errors;
+            return this.state.errors.map((err,i) => (
+              <li key={i}>{err.name}</li>
+              ));
+          //  return ren
+        }
+    }
     render(){
+      console.log(this.state);
         return(
                     <div>
                       <img src={bg} alt="Login Full Background" className="full-bg animation-pulseSlow" />
@@ -49,6 +76,17 @@ class Login extends Component {
                         </div>
                         <div className="block push-bit">
                           {/* Login Form */}
+                          {
+                              this.renderError() && this.state.isErr ?
+                                  <div className="alert alert-danger alert-dismissable">
+                                  <button type="button" className="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                  <h4><i className="fa fa-times-circle" />Error</h4>
+                                  <ul>
+                                      {this.renderError()}
+                                  </ul>
+                                  </div>
+                              : null
+                          }
                           <form onSubmit={this.onSubmit} className="form-horizontal form-bordered form-control-borderless">
                             <div className="form-group">
                               <div className="col-xs-12">

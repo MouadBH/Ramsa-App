@@ -28,7 +28,7 @@ class UserController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
-        
+
         $user = new User();
         $user->nom = $request->json()->get('nom');
         $user->prenom = $request->json()->get('prenom');
@@ -54,7 +54,7 @@ class UserController extends Controller
 
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'donnes pas valid'], 400);
+                return response()->json(['error' => 'les donnes pas valid']);
             }
         } catch (JWTException $ex) {
             return response()->json(['error' => 'token error'], 500);
