@@ -18,6 +18,8 @@ Route::post('login', 'UserController@login');
 Route::get('profile', 'UserController@getAuthenticatedUser');
 
 Route::get('clients', 'ClientController@index');
+Route::get('client/{id}/contrats', 'ClientController@getClientContrats');
+Route::get('client/{id}/consomations', 'ClientController@getClientConsomations');
 Route::post('client', 'ClientController@store');
 Route::get('client/{id}', 'ClientController@show');
 Route::put('client/update/{id}', 'ClientController@update');

@@ -14,7 +14,7 @@ class ClientController extends Controller
     }
 
     public function index(Request $request)
-    { 
+    {
         $allClient = Client::all();
 
         return response()->json(['clients' => $allClient]);
@@ -45,7 +45,7 @@ class ClientController extends Controller
         $client->save();
 
         return response()->json(['client' => $client], 201);
-    } 
+    }
 
     public function show($id)
     {
@@ -83,14 +83,24 @@ class ClientController extends Controller
 
     public function login(Request $request)
     {
-        
+
     }
-    
+
 
     public function delete($id)
     {
         $client = Client::findOrFail($id);
         $client->delete();
         return response()->json('Successfully Deleted');
+    }
+
+    public function getClientContrats($id)
+    {
+      return response()->json(Client::findOrFail($id)->contrats);
+    }
+
+    public function getClientConsomations($id)
+    {
+      return response()->json(Client::findOrFail($id)->consomations);
     }
 }

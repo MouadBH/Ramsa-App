@@ -20,4 +20,9 @@ class Client extends Model
     {
         return $this->hasMany('App\Contrat', 'id_client', 'id');
     }
+
+    public function consomations()
+    {
+        return $this->hasManyThrough('App\Consomation', 'App\Contrat', 'id_client', 'contrat_id', 'id', 'id');
+    }
 }

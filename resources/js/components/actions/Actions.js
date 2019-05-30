@@ -94,6 +94,28 @@ export const deleteClient = id => {
         });
 }
 
+export const getClientContrats = id => {
+    return axios
+        .get('/api/client/'+id+'/contrats')
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const getClientConsomations = id => {
+    return axios
+        .get('/api/client/'+id+'/consomations')
+        .then(res => {
+            return res.data;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
 export const contrats = () => {
     return axios
         .get('/api/contrats')

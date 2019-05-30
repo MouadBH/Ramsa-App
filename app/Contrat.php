@@ -35,4 +35,8 @@ class Contrat extends Model
     {
         return $this->hasMany('App\Reclamation');
     }
+    public function consomations()
+    {
+        return $this->hasMany('App\Consomation');
+    }
 }

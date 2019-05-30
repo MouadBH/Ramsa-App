@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import { Link, IndexLink, browserHistory } from 'react-router';
 import SweetAlert from 'sweetalert-react';
 import 'sweetalert/dist/sweetalert.css';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { getClientById } from '../actions/Actions';
 import { deleteClient } from '../actions/Actions';
+import { getClientContrats } from '../actions/Actions';
+import { getClientConsomations } from '../actions/Actions';
 
 class Show extends Component {
     constructor(props) {
@@ -17,6 +20,8 @@ class Show extends Component {
             email: '',
             adress: '',
             tele: '',
+            contrats: [],
+            consomations: [],
             errors: {}
         };
 
@@ -36,6 +41,25 @@ class Show extends Component {
             });
         }
         );
+        getClientContrats(this.state.idClient).then((c) => {
+          console.log(c);
+            this.setState({
+                contrats: c
+            });
+        }
+        );
+
+        getClientConsomations(this.state.idClient).then((consomation) => {
+
+            let conso = [];
+            consomation.forEach(function (c) {
+              conso.push({ name: new Date(c.created_at), consomation: c.prix })
+            })
+            this.setState({
+                consomations: conso
+            })
+        }
+        );
         //document.title = "dfsdfsdfsd"
 
     }
@@ -44,12 +68,40 @@ class Show extends Component {
         deleteClient(this.state.idClient).then((res) => {
             console.log(res)
             browserHistory.push(`/client`);
-            
+
             console.log(this.state)
         })
     }
-
+    renderContratsTable() {
+        const { contrats } = this.state;
+        return contrats && contrats.length ? contrats.map((c, index) => (
+            <tr key={index}>
+                <td className="text-center"><Link to={"/contrat/" + c.id}>{c.id}</Link></td>
+                <td className="text-center">{c.date_debut}</td>
+                <td className="text-center">{c.date_fin}</td>
+                <td className="text-center">{c.adress_loc}</td>
+                <td className="text-center">{c.compteur}</td>
+                <td className="text-center">{c.order}</td>
+            </tr>
+        )) : null;
+    }
+    renderChart(){
+      let {consomations} = this.state;
+      if (consomations && consomations.length) {
+        return <LineChart width={600} height={300} data={consomations} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+             <XAxis dataKey="name"/>
+             <YAxis/>
+                <CartesianGrid strokeDasharray="3 3"/>
+             <Tooltip/>
+             <Legend />
+             <Line type="monotone" dataKey="consomation" stroke="#8884d8" activeDot={{r: 8}}/>
+          </LineChart>
+      }else{
+        return <h1><span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...</h1>
+      }
+    }
     render() {
+      console.log(this.state);
         return (
             <div>
                 <div className="content-header">
@@ -65,7 +117,7 @@ class Show extends Component {
                     <li>{this.state.nom} {this.state.prenom}</li>
                 </ul>
                 <div className="row animation-fadeInQuick">
-                    <div className="col-lg-4">
+                    <div className="col-md-4">
                         <div className="block ">
                             <div className="block-title">
                                 <h2><i className="fa fa-file-o"></i> <strong>Client</strong> Info</h2>
@@ -125,7 +177,7 @@ class Show extends Component {
                             </table>
                         </div>
                     </div>
-                    <div className="col-lg-8">
+                    <div className="col-md-8">
                         <div className="block">
                             <div className="block-title">
                                 <h2><i className="fa fa-file-o"></i> <strong>Reclamation</strong></h2>
@@ -134,24 +186,15 @@ class Show extends Component {
                                 <thead>
                                     <tr>
                                         <th className="text-center">ID</th>
-                                        <th className="text-center">Description</th>
-                                        <th className="text-center">Date</th>
-                                        <th className="text-center">Contrat</th>
-                                        <th className="text-center">Type</th>
-                                        <th className="text-center">Affecte</th>
-                                        <th className="text-center">Traite</th>
+                                        <th className="text-center">Date Debut</th>
+                                        <th className="text-center">Date Fin</th>
+                                        <th className="text-center">Addres</th>
+                                        <th className="text-center">Compteur</th>
+                                        <th className="text-center">Order</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>1</strong></a></td>
-                                        <td className="hidden-xs" style={{ width: '15%' }}><a href="javascript:void(0)">5 Products</a></td>
-                                        <td className="text-right hidden-xs" style={{ width: '10%' }}><strong>$585,00</strong></td>
-                                        <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>1</strong></a></td>
-                                        <td className="hidden-xs">Paypal</td>
-                                        <td className="hidden-xs text-center">16/11/2014</td>
-                                        <td><span className="label label-warning">Processing</span></td>
-                                    </tr>
+                                    {this.renderContratsTable()}
                                 </tbody>
                             </table>
                         </div>
@@ -159,30 +202,7 @@ class Show extends Component {
                             <div className="block-title">
                                 <h2><i className="fa fa-file-o"></i> <strong>Consomation</strong></h2>
                             </div>
-                            <table className="table table-bordered table-striped table-vcenter">
-                                <thead>
-                                    <tr>
-                                        <th className="text-center">ID</th>
-                                        <th className="text-center">Description</th>
-                                        <th className="text-center">Date</th>
-                                        <th className="text-center">Contrat</th>
-                                        <th className="text-center">Type</th>
-                                        <th className="text-center">Affecte</th>
-                                        <th className="text-center">Traite</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>1</strong></a></td>
-                                        <td className="hidden-xs" style={{ width: '15%' }}><a href="javascript:void(0)">5 Products</a></td>
-                                        <td className="text-right hidden-xs" style={{ width: '10%' }}><strong>$585,00</strong></td>
-                                        <td className="text-center" style={{ width: '100px' }}><a href="#"><strong>1</strong></a></td>
-                                        <td className="hidden-xs">Paypal</td>
-                                        <td className="hidden-xs text-center">16/11/2014</td>
-                                        <td><span className="label label-warning">Processing</span></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            {this.renderChart()}
                         </div>
 
                     </div>
