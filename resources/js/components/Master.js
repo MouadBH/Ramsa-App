@@ -28,6 +28,92 @@ export default class Master extends Component {
         //     alert("The paragraph was clicked.");
         //   });
     }
+    renderSidebar(){
+      if (localStorage.user_type === "admin") {
+        return <ul className="sidebar-nav">
+            <li>
+                <IndexLink to="/" className=" active">
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Dashboard</span>
+                </IndexLink>
+            </li>
+            <li>
+                <a href="" className="sidebar-nav-menu">
+                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Client</span>
+                </a>
+                <ul>
+                    <li>
+                        <Link to="/client">All</Link>
+                    </li>
+                    <li>
+                        <Link to="/client/create">Ajouter</Link>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="" className="sidebar-nav-menu">
+                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Reclamation</span>
+                </a>
+                <ul>
+                    <li>
+                        <Link to="/reclamation">All</Link>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" className="sidebar-nav-menu">
+                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Contrat</span>
+                </a>
+                <ul>
+                    <li>
+                        <Link to="/contrat">All</Link>
+                    </li>
+                    <li>
+                        <Link to="/contrat/create">Ajouter</Link>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" className="sidebar-nav-menu">
+                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Equipe</span>
+                </a>
+                <ul>
+                    <li>
+                        <Link to="/equipe">All</Link>
+                    </li>
+                    <li>
+                        <Link to="/equipe/create">Ajouter</Link>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" className="sidebar-nav-menu">
+                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                    <i className="gi gi-cogwheel sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Employes</span>
+                </a>
+                <ul>
+                    <li>
+                        <Link to="/employe">All</Link>
+                    </li>
+                    <li>
+                        <Link to="/employe/create">Ajouter</Link>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+      }else if(localStorage.user_type === "emp"){
+        return <div>hi</div>;
+      }
+    }
     render() {
         return (
             <div id="page-wrapper">
@@ -57,89 +143,8 @@ export default class Master extends Component {
                                     </div>
                                     <div className="sidebar-user-name">{localStorage.user_nom}</div>
                                 </div>
-
-
-                                <ul className="sidebar-nav">
-                                    <li>
-                                        <IndexLink to="/" className=" active">
-                                            <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Dashboard</span>
-                                        </IndexLink>
-                                    </li>
-                                    <li>
-                                        <a href="" className="sidebar-nav-menu">
-                                            <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                            <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Client</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <Link to="/client">All</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/client/create">Ajouter</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="" className="sidebar-nav-menu">
-                                            <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                            <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Reclamation</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <Link to="/reclamation">All</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="sidebar-nav-menu">
-                                            <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                            <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Contrat</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <Link to="/contrat">All</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/contrat/create">Ajouter</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="sidebar-nav-menu">
-                                            <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                            <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Equipe</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <Link to="/equipe">All</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/equipe/create">Ajouter</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#" className="sidebar-nav-menu">
-                                            <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                                            <i className="gi gi-cogwheel sidebar-nav-icon"></i>
-                                            <span className="sidebar-nav-mini-hide">Employes</span>
-                                        </a>
-                                        <ul>
-                                            <li>
-                                                <Link to="/employe">All</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="/employe/create">Ajouter</Link>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                                  {this.renderSidebar()}
+                              </div>
                         </div>
                     </div>
 

@@ -4,11 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employe;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Config;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Facades\JWTFactory;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Tymon\JWTAuth\PayloadFactory;
+use Tymon\JWTAuth\JWTManager as JWT;
 
 class EmployeController extends Controller
 {
+    function __construct()
+    {
+      \Config::set('jwt.user', 'App\Employe');
+      \Config::set('auth.providers.users.model', \App\Employe::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -131,5 +143,27 @@ class EmployeController extends Controller
     public function getEquipe($id)
     {
         return response()->json(Equipe::findOrFail($id)->equipe);
+    }
+
+    public function login(Request $request)
+    {
+
+        $credentials = $request->json()->all();
+
+        try {
+        //  dd($credentials);
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['error' => 'les donnes pas valid']);
+            }
+        } catch (JWTException $ex) {
+            return response()->json(['error' => 'token error'], 500);
+        }
+        //dd($token);
+        $user = Employe::where('email', '=', $credentials['email'])->firstOrFail();
+        $user_id = $user->id;
+        $user_nom = $user->nom;
+        $user_prenom = $user->prenom;
+        $user_id_equipe = $user->id_equipe;
+        return response()->json(compact('token', 'user_id', 'user_nom', 'user_prenom', 'user_id_equipe'));
     }
 }

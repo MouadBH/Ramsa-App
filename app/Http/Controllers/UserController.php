@@ -16,6 +16,11 @@ use App\User;
 
 class UserController extends Controller
 {
+  function __construct()
+  {
+    \Config::set('jwt.user', 'App\User');
+    \Config::set('auth.providers.users.model', \App\User::class);
+  }
     public function register(Request $request)
     {
         $validator = Validator::make($request->json()->all(), [

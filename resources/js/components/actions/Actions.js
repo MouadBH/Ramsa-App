@@ -13,11 +13,38 @@ export const login = user => {
           if (res.data.error) {
             return res;
           }else {
+            localStorage.setItem('user_type', "admin");
             localStorage.setItem('usertoken', res.data.token);
             localStorage.setItem('user_id', res.data.user_id);
             localStorage.setItem('user_nom', res.data.user_nom);
             localStorage.setItem('user_prenom', res.data.user_prenom);
-            localStorage.setItem('user_type', "admin");
+          }
+            console.log(res);
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const loginEmp = user => {
+    return axios
+        .post('api/employe/login', {
+            email: user.email,
+            password: user.password
+        }, {
+                headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+          if (res.data.error) {
+            return res;
+          }else {
+            localStorage.setItem('user_type', "emp");
+            localStorage.setItem('usertoken', res.data.token);
+            localStorage.setItem('user_id', res.data.user_id);
+            localStorage.setItem('user_nom', res.data.user_nom);
+            localStorage.setItem('user_prenom', res.data.user_prenom);
+            localStorage.setItem('user_id_equipe', res.data.user_id_equipe);
           }
             console.log(res);
             return res;

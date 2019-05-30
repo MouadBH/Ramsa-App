@@ -59,6 +59,7 @@ Route::get('tournes', 'TourneController@index');
 
 Route::get('employes', 'EmployeController@index');
 Route::post('employe', 'EmployeController@store');
+Route::post('employe/login', 'EmployeController@login');
 Route::get('employe/{id}', 'EmployeController@show');
     Route::get('employe/{id}/equipe', 'EmployeController@getEquipe');
 Route::put('employe/update/{id}', 'EmployeController@AffectToEquipe');

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import bg from './login_full_bg.jpg';
 import { login } from "../actions/Actions";
+import { loginEmp } from "../actions/Actions";
 import { browserHistory } from 'react-router';
 
 
@@ -16,6 +17,7 @@ class Login extends Component {
             cin: '',
             password: '',
             isErr: false,
+            type: false,
             errors: []
         };
 
@@ -39,21 +41,40 @@ class Login extends Component {
 
         }
 
-        const user = {
-            cin: this.state.cin,
-            password: this.state.password
+        if (this.state.type) {
+          const user = {
+              email: this.state.cin,
+              password: this.state.password
+          }
+
+          loginEmp(user).then((res) => {
+            console.log(res);
+            if (res.data.error) {
+              this.state.errors.push({name: res.data.error});
+              this.setState({isErr: true})
+
+            }else {
+              browserHistory.push(`/`);
+            }
+          })
+        } else {
+          const user = {
+              cin: this.state.cin,
+              password: this.state.password
+          }
+
+          login(user).then((res) => {
+            console.log(res);
+            if (res.data.error) {
+              this.state.errors.push({name: res.data.error});
+              this.setState({isErr: true})
+
+            }else {
+              browserHistory.push(`/`);
+            }
+          })
         }
 
-        login(user).then((res) => {
-          console.log(res);
-          if (res.data.error) {
-            this.state.errors.push({name: res.data.error});
-            this.setState({isErr: true})
-            
-          }else {
-            browserHistory.push(`/`);
-          }
-        })
     }
     renderError(){
         console.log(this.state.errors)
@@ -92,7 +113,7 @@ class Login extends Component {
                               <div className="col-xs-12">
                                 <div className="input-group">
                                   <span className="input-group-addon"><i className="fa fa-credit-card-alt" /></span>
-                                  <input type="text" name="cin" onChange={this.onChange} value={this.state.cin} className="form-control input-lg" placeholder="CIN" />
+                                  <input type="text" name="cin" onChange={this.onChange} value={this.state.cin} className="form-control input-lg" placeholder={() => this.state.type ? "Email" : "CIN"} />
                                 </div>
                               </div>
                             </div>
@@ -104,13 +125,19 @@ class Login extends Component {
                                 </div>
                               </div>
                             </div>
-                            <div className="form-group form-actions">
-                              <div className="col-xs-4">
-                                <label className="switch switch-primary" data-toggle="tooltip" title="Remember Me?">
-                                  <input type="checkbox" name="login-remember-me" defaultChecked />
-                                  <span />
-                                </label>
+                            <div className="form-group">
+                              <div className="col-xs-12">
+                                <div className="input-group">
+                                  <span className="input-group-addon">Employe</span>
+                                  <label className="switch switch-primary">
+                                    <input type="checkbox" name="type" onChange={() => this.setState({ type: !this.state.type})} />
+                                    <span />
+                                  </label>
+                                </div>
                               </div>
+                            </div>
+                            <div className="form-group form-actions">
+
                               <div className="col-xs-8 text-right">
                                 <button type="submit" className="btn btn-sm btn-primary"><i className="fa fa-angle-right" /> Login to Dashboard</button>
                               </div>
