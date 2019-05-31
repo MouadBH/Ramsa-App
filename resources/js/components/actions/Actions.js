@@ -386,6 +386,22 @@ export const affecteEquipe = reclamation => {
         });
 }
 
+export const equipeUpdate = data => {
+    return axios
+        .put('/api/reclamation/update/'+data.id , {
+            description_equipe: data.description_equipe,
+            traite: data.traite
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
 export const employes = () => {
     return axios
         .get('/api/employes')
@@ -440,6 +456,17 @@ export const deleteEmploye = id => {
 export const getEquipeEmployes = id => {
     return axios
         .get('/api/equipe/'+id+'/employes')
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
+
+export const getEquipeReclamations = id => {
+    return axios
+        .get('/api/equipe/'+id+'/reclamations')
         .then(res => {
             return res;
         })

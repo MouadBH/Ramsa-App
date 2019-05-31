@@ -17,6 +17,10 @@ export default class Master extends Component {
         localStorage.removeItem('user_nom');
         localStorage.removeItem('user_prenom');
         localStorage.removeItem('user_type');
+        if (localStorage.getItem('user_id_equipe')) {
+          localStorage.removeItem('user_id_equipe');
+        }
+
         browserHistory.push(`/login`);
     }
     componentDidMount(){
@@ -111,7 +115,29 @@ export default class Master extends Component {
             </li>
         </ul>
       }else if(localStorage.user_type === "emp"){
-        return <div>hi</div>;
+        return <ul className="sidebar-nav">
+            <li>
+                <IndexLink to="/" className=" active">
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Dashboard</span>
+                </IndexLink>
+            </li>
+            <li>
+                <a href="" className="sidebar-nav-menu">
+                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
+                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
+                    <span className="sidebar-nav-mini-hide">Client</span>
+                </a>
+                <ul>
+                    <li>
+                        <Link to="/client">All</Link>
+                    </li>
+                    <li>
+                        <Link to="/client/create">Ajouter</Link>
+                    </li>
+                </ul>
+            </li>
+          </ul>;
       }
     }
     render() {
@@ -169,29 +195,6 @@ export default class Master extends Component {
                                         <img src="https://elmashhad.com/themes/msh/assets/images/avatar.png" alt="avatar" /> <i className="fa fa-angle-down"></i>
                                     </a>
                                     <ul className="dropdown-menu dropdown-custom dropdown-menu-right">
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <i className="fa fa-clock-o fa-fw pull-right"></i>
-                                                <span className="badge pull-right">10</span>
-                                                Client
-                                        </a>
-                                            <a href="javascript:void(0)">
-                                                <i className="fa fa-envelope-o fa-fw pull-right"></i>
-                                                <span className="badge pull-right">5</span>
-                                                Reclamation
-                                        </a>
-                                            <a href="javascript:void(0)">
-                                                <i className="fa fa-magnet fa-fw pull-right"></i>
-                                                <span className="badge pull-right">3</span>
-                                                Contrat
-                                        </a>
-                                            <a href="javascript:void(0)">
-                                                <i className="fa fa-question fa-fw pull-right"></i>
-                                                <span className="badge pull-right">11</span>
-                                                employeé
-                                        </a>
-                                        </li>
-                                        <li className="divider"></li>
                                         <li>
                                             <a href="/" onClick={this.logOut.bind(this)}>
                                                 <i className="fa fa-user fa-fw pull-right"></i>

@@ -40,6 +40,7 @@ Route::post('equipe', 'EquipeController@store');
 Route::get('equipe/{id}', 'EquipeController@show');
     Route::get('equipe/{id}/loc', 'EquipeController@getEquipeLoc');
     Route::get('equipe/{id}/employes', 'EquipeController@getEquipeEmplyes');
+    Route::get('equipe/{id}/reclamations', 'EquipeController@getEquipeReclamations');
 Route::put('equipe/update/{id}', 'EquipeController@update');
 Route::delete('equipe/delete/{id}', 'EquipeController@destroy');
 
@@ -48,6 +49,7 @@ Route::get('reclamation/{id}', 'ReclamationController@show');
     Route::get('reclamation/{id}/equipe', 'ReclamationController@getReclamationEquipe');
     Route::get('reclamation/{id}/contrat', 'ReclamationController@getReclamationContrat');
 Route::put('reclamation/affectequipe/{id}', 'ReclamationController@AffectToEquipe');
+Route::put('reclamation/update/{id}', 'ReclamationController@update');
 Route::delete('reclamation/delete/{id}', 'ReclamationController@destroy');
 
 Route::get('locs', 'LocController@index');

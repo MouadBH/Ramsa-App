@@ -12,7 +12,7 @@ class Equipe extends Model
     }
     public function reclamations()
     {
-        return $this->hasMany('App\Reclamation');
+        return $this->hasMany('App\Reclamation', 'id_equipe');
     }
     public function employes()
     {

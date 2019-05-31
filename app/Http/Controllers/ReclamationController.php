@@ -71,7 +71,12 @@ class ReclamationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $reclamation = Reclamation::findOrFail($id);
+        $reclamation->description_equipe = $request->json()->get('description_equipe');
+        $reclamation->traite = $request->json()->get('traite');
+        $reclamation->save();
+
+        return response()->json(['reclamation' => $reclamation], 201);
     }
 
     /**
@@ -100,7 +105,7 @@ class ReclamationController extends Controller
     public function AffectToEquipe(Request $request, $id)
     {
         $reclamation = Reclamation::findOrFail($id);
-        
+
         $reclamation->id_equipe = $request->json()->get('id_equipe');
         $reclamation->affecte = $request->json()->get('affecte');
         $reclamation->save();

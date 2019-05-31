@@ -54,7 +54,7 @@ class Login extends Component {
               this.setState({isErr: true})
 
             }else {
-              browserHistory.push(`/`);
+              browserHistory.push(`/dashboard`);
             }
           })
         } else {

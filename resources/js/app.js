@@ -36,6 +36,8 @@ import Reclamation from './components/reclamation/Reclamation';
 import Employe from './components/employe/Employe';
     import EditEmploye from './components/employe/Edit';
     import CreateEmploye from './components/employe/Create';
+import Profile from './components/profile/Profile';
+import ReclamationEquipe from './components/profile/reclamation';
 
 if (!localStorage.getItem('usertoken')) {
     browserHistory.push(`/login`);
@@ -64,6 +66,10 @@ if (document.getElementById('app')) {
                 <Route exact path="employe" component={Employe}></Route>
                     <Route exact path="/employe/edit/:id" component={EditEmploye}></Route>
                     <Route exact path="/employe/create" component={CreateEmploye}></Route>
+            </Route>
+            <Route exact path="/dashboard" component={Master}>
+                <IndexRoute exact component={Profile}></IndexRoute>
+                <Route exact path="/dashboard/reclamation/details/:id" component={ReclamationEquipe}></Route>
             </Route>
             <Route path="login" component={Login} />
         </Router>
