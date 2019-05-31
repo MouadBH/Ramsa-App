@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reclamation;
+use App\Notification;
+use Illuminate\Support\Facades\DB;
 
 class ReclamationController extends Controller
 {
@@ -74,7 +76,15 @@ class ReclamationController extends Controller
         $reclamation = Reclamation::findOrFail($id);
         $reclamation->description_equipe = $request->json()->get('description_equipe');
         $reclamation->traite = $request->json()->get('traite');
-        $reclamation->save();
+        if ($reclamation->save()) {
+          $client = DB::select('SELECT clients.id from clients,contrats,reclamations WHERE reclamations.id = :id and reclamations.id_contrat=contrats.id and contrats.id_client=clients.id LIMIT 1', ["id" => $id]);
+        //  dd($client);
+          $notif = new Notification();
+          $notif->expediteur = "Equipe";
+          $notif->client_id = $client[0]->id;
+          $notif->message = "Votre Reclamation En Traitement.";
+          $notif->save();
+        }
 
         return response()->json(['reclamation' => $reclamation], 201);
     }
@@ -108,7 +118,15 @@ class ReclamationController extends Controller
 
         $reclamation->id_equipe = $request->json()->get('id_equipe');
         $reclamation->affecte = $request->json()->get('affecte');
-        $reclamation->save();
+        if ($reclamation->save()) {
+          $client = DB::select('SELECT clients.id from clients,contrats,reclamations WHERE reclamations.id = :id and reclamations.id_contrat=contrats.id and contrats.id_client=clients.id LIMIT 1', ["id" => $id]);
+
+          $notif = new Notification();
+          $notif->expediteur = "Equipe";
+          $notif->client_id = $client[0]->id;
+          $notif->message = "Votre Reclamation Est Affecté Une Equipe Attend La Trairement.";
+          $notif->save();
+        }
 
         return response()->json(['reclamation' => $reclamation], 201);
 
