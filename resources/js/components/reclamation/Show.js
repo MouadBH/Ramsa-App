@@ -103,7 +103,6 @@ class Show extends Component {
                                     <th className="text-center">Equipe</th>
                                     <th className="text-center">Date Affecte</th>
                                     <th className="text-center">Traite</th>
-                                    <th className="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,15 +111,14 @@ class Show extends Component {
                                     <th className="text-center">{this.state.date}</th>
                                     <th className="text-center"><Link to={"/contrat/detail/" + this.state.id_contrat}>{this.state.id_contrat}</Link></th>
                                     <th className="text-center">{this.state.type}</th>
-                                    <th className="text-center"> {this.state.affecte == 0 ? <span className="label label-warning">Pas encore</span> : <span className="label label-primary">OUI</span>}</th>
+                                    <th className="text-center"> {this.state.affecte == 0 ? <span className="label label-warning">Pas Encore</span> : <span className="label label-primary">OUI</span>}</th>
                                     <th className="text-center">
                                         {
-                                            this.state.equipe.id ? <Link to={"/equipe/detail/" + this.state.equipe.id}>{this.state.equipe.libelle}</Link> : "Pas affecte " 
+                                            this.state.equipe.id ? <Link to={"/equipe/detail/" + this.state.equipe.id}>{this.state.equipe.libelle}</Link> : "Pas affecte "
                                         }
                                     </th>
                                     <th className="text-center">{this.state.date_affecte}</th>
-                                    <th className="text-center">{this.state.traite}</th>
-                                    <th className="text-center">{this.state.traite}</th>
+                                    <th className="text-center">{this.state.traite == 1 ? "OUI" : "Pas Encors"}</th>
                                 </tr>
                             </tbody>
                         </table>

@@ -117,25 +117,10 @@ export default class Master extends Component {
       }else if(localStorage.user_type === "emp"){
         return <ul className="sidebar-nav">
             <li>
-                <IndexLink to="/" className=" active">
+                <IndexLink to="/dashboard" className=" active">
                     <i className="gi gi-stopwatch sidebar-nav-icon"></i>
                     <span className="sidebar-nav-mini-hide">Dashboard</span>
                 </IndexLink>
-            </li>
-            <li>
-                <a href="" className="sidebar-nav-menu">
-                    <i className="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i>
-                    <i className="gi gi-stopwatch sidebar-nav-icon"></i>
-                    <span className="sidebar-nav-mini-hide">Client</span>
-                </a>
-                <ul>
-                    <li>
-                        <Link to="/client">All</Link>
-                    </li>
-                    <li>
-                        <Link to="/client/create">Ajouter</Link>
-                    </li>
-                </ul>
             </li>
           </ul>;
       }
@@ -183,11 +168,7 @@ export default class Master extends Component {
                                 </a>
                             </li>
                         </ul>
-                            <form action="index.html" method="post" className="navbar-form-custom">
-                                <div className="form-group">
-                                    <input type="text" id="top-search" name="top-search" className="form-control" placeholder="Search.." />
-                                </div>
-                            </form>
+
 
                             <ul className="nav navbar-nav-custom pull-right">
                                 <li className="dropdown">
@@ -210,10 +191,10 @@ export default class Master extends Component {
                         </div>
                         <footer className="clearfix">
                             <div className="pull-right">
-                                Crafted with <i className="fa fa-heart text-danger"></i> by <a href="http://goo.gl/vNS3I" target="_blank">pixelcave</a>
+                                Projet fin d'etude
                             </div>
                             <div className="pull-left">
-                                <span id="year-copy"></span> &copy; <a href="http://goo.gl/TDOSuC" target="_blank">ProUI</a>
+
                             </div>
                         </footer>
                     </div>

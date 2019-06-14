@@ -64,7 +64,7 @@ Route::post('employe', 'EmployeController@store');
 Route::post('employe/login', 'EmployeController@login');
 Route::get('employe/{id}', 'EmployeController@show');
     Route::get('employe/{id}/equipe', 'EmployeController@getEquipe');
-Route::put('employe/update/{id}', 'EmployeController@AffectToEquipe');
+Route::put('employe/update/{id}', 'EmployeController@update');
 Route::delete('employe/delete/{id}', 'EmployeController@destroy');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

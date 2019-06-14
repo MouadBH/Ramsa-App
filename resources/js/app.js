@@ -47,6 +47,11 @@ if (!localStorage.getItem('usertoken')) {
 if (document.getElementById('app')) {
     ReactDOM.render(
         <Router history={browserHistory}>
+            <Route path="login" component={Login} />
+            <Route exact path="/dashboard" component={Master}>
+                <IndexRoute exact component={Profile}></IndexRoute>
+                <Route exact path="/dashboard/reclamation/details/:id" component={ReclamationEquipe}></Route>
+            </Route>
             <Route exact path="/" component={Master}>
                 <IndexRoute exact component={Main}></IndexRoute>
                 <Route exact path="client" component={Client}></Route>
@@ -67,11 +72,8 @@ if (document.getElementById('app')) {
                     <Route exact path="/employe/edit/:id" component={EditEmploye}></Route>
                     <Route exact path="/employe/create" component={CreateEmploye}></Route>
             </Route>
-            <Route exact path="/dashboard" component={Master}>
-                <IndexRoute exact component={Profile}></IndexRoute>
-                <Route exact path="/dashboard/reclamation/details/:id" component={ReclamationEquipe}></Route>
-            </Route>
-            <Route path="login" component={Login} />
+
+
         </Router>
         , document.getElementById('app'));
 }

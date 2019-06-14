@@ -10,37 +10,9 @@ class Main extends Component {
                             <div className="header-section">
                                 <div className="row">
                                     <div className="col-md-4 col-lg-6 hidden-xs hidden-sm">
-                                        <h1>Welcome <strong>{localStorage.user_nom}</strong><br /><small>You Look Awesome!</small></h1>
+                                        <h1>Bonjour <strong>{localStorage.user_nom}</strong><br /><small>Espace d'Administrateur</small></h1>
                                     </div>
 
-                                    <div className="col-md-8 col-lg-6">
-                                        <div className="row text-center">
-                                            <div className="col-xs-4 col-sm-3">
-                                                <h2 className="animation-hatch">
-                                                    $<strong>93.7k</strong><br />
-                                                    <small><i className="fa fa-thumbs-o-up"></i> Great</small>
-                                                </h2>
-                                            </div>
-                                            <div className="col-xs-4 col-sm-3">
-                                                <h2 className="animation-hatch">
-                                                    <strong>167k</strong><br />
-                                                    <small><i className="fa fa-heart-o"></i> Likes</small>
-                                                </h2>
-                                            </div>
-                                            <div className="col-xs-4 col-sm-3">
-                                                <h2 className="animation-hatch">
-                                                    <strong>101</strong><br />
-                                                    <small><i className="fa fa-calendar-o"></i> Events</small>
-                                                </h2>
-                                            </div>
-                                            <div className="col-sm-3 hidden-xs">
-                                                <h2 className="animation-hatch">
-                                                    <strong>27° C</strong><br />
-                                                    <small><i className="fa fa-map-marker"></i> Sydney</small>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <img src={bg} alt="header image" className="animation-pulseSlow" />

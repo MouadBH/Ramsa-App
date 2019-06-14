@@ -5,6 +5,7 @@ import 'sweetalert/dist/sweetalert.css';
 import Select from 'react-select'
 import { createEmploye } from '../actions/Actions';
 import { equipes } from '../actions/Actions';
+import { employeUpdate } from '../actions/Actions';
 import { getEmployeById } from '../actions/Actions';
 
 class Edit extends Component {
@@ -68,19 +69,20 @@ class Edit extends Component {
     handleSubmit(e) {
         e.preventDefault();
         const employe = {
+            id: this.state.idEmploye,
             nom: this.state.nom,
             prenom: this.state.prenom,
             email: this.state.email,
             id_equipe: this.state.id_equipe
         }
-        createEmploye(employe).then(res => {
+        employeUpdate(employe).then(res => {
             console.log(res)
             if (res.data.employe) {
                 this.setState({ isAdding: true })
                 this.setState({ isErr: false })
                 this.setState({ errors: null})
 
-                this.hundelReset()
+              //  this.hundelReset()
             } else {
                 this.setState({ isErr: true })
                 this.setState({ errors: null })
@@ -163,7 +165,7 @@ class Edit extends Component {
                         </div>
                         <div className="form-group form-actions">
                             <div className="col-md-9 col-md-offset-3">
-                                <button type="submit" className="btn btn-sm btn-primary"><i className="fa fa-plus"></i> Ajouter</button>
+                                <button type="submit" className="btn btn-sm btn-primary"><i className="fa fa-plus"></i> Modifier</button>
                             </div>
                         </div>
                     </form>

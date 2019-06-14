@@ -113,7 +113,7 @@ class Login extends Component {
                               <div className="col-xs-12">
                                 <div className="input-group">
                                   <span className="input-group-addon"><i className="fa fa-credit-card-alt" /></span>
-                                  <input type="text" name="cin" onChange={this.onChange} value={this.state.cin} className="form-control input-lg" placeholder={() => this.state.type ? "Email" : "CIN"} />
+                                  <input type="text" name="cin" onChange={this.onChange} value={this.state.cin} className="form-control input-lg" placeholder="Email ou CIN" />
                                 </div>
                               </div>
                             </div>

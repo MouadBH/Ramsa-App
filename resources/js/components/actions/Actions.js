@@ -431,6 +431,24 @@ export const createEmploye = employe => {
         });
 }
 
+export const employeUpdate = data => {
+    return axios
+        .put('/api/employe/update/'+data.id , {
+          nom: data.nom,
+          prenom: data.prenom,
+          email: data.email,
+          id_equipe: data.id_equipe
+        }, {
+            headers: { 'Content-Type': 'application/json' }
+            })
+        .then(res => {
+            return res;
+        })
+        .catch(err => {
+            return err;
+        });
+}
+
 export const getEmployeById = id => {
     return axios
         .get('/api/employe/'+id)

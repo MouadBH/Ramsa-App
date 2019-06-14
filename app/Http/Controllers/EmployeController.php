@@ -109,8 +109,7 @@ class EmployeController extends Controller
           'nom' => 'required|max:255',
           'prenom' => 'required|max:255',
           'id_equipe' => 'required|max:255',
-          'email' => 'required|max:255',
-          'password' => 'required|max:255'
+          'email' => 'required|max:255'
       ]);
 
       if ($validator->fails()) {
@@ -121,7 +120,6 @@ class EmployeController extends Controller
       $employe->prenom = $request->json()->get('prenom');
       $employe->id_equipe = $request->json()->get('id_equipe');
       $employe->email = $request->json()->get('email');
-      $employe->password = $request->json()->get('password');
       $employe->save();
 
       return response()->json(['employe' => $employe], 201);

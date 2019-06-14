@@ -112,7 +112,7 @@ class ReclamationEquipe extends Component {
                 </div>
                 <ul className="breadcrumb breadcrumb-top">
                     <li>Home</li>
-                    <li><Link to='/reclamation'>Reclamation</Link></li>
+                    <li><Link to='/dashboard'>Reclamation</Link></li>
                     <li>{this.state.idReclamation}</li>
                 </ul>
                 <div className="block full animation-fadeInQuick">

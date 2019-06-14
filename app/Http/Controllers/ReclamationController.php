@@ -124,7 +124,7 @@ class ReclamationController extends Controller
           $notif = new Notification();
           $notif->expediteur = "Equipe";
           $notif->client_id = $client[0]->id;
-          $notif->message = "Votre Reclamation Est Affecté Une Equipe Attend La Trairement.";
+          $notif->message = "Votre Reclamation Est Affecte Une Equipe Attend La Trairement.";
           $notif->save();
         }
 
