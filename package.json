@@ -27,7 +27,7 @@
     "dependencies": {
         "@coreui/coreui": "^2.1.9",
         "@react-google-maps/api": "^1.2.3-alpha.4",
-        "datatables.net": "^1.10.12",
+        "datatables.net": "^1.11.3",
         "datatables.net-dt": "^1.10.19",
         "jwt-decode": "^2.2.0",
         "react-datepicker": "^2.4.0",
